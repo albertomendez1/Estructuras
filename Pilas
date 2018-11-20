@@ -1,0 +1,204 @@
+//Pila.h
+
+#pragma once
+#define N 10
+
+
+class Pila
+{
+private:
+	int tope;
+	int datosPila[N];
+
+public:
+	Pila(void);
+	~Pila(void);
+	void iniciar();
+	int getTope();
+	bool Pilallena();
+	bool Pilavacia();
+	void agregar(int dato);
+	void quitar();
+	int valortope();
+	
+};
+
+
+//Pila.cpp
+
+#include "StdAfx.h"
+#include "Pila.h"
+
+
+
+Pila::Pila(void)
+{
+	iniciar();
+}
+
+void Pila::iniciar(){
+	tope=-1;
+}
+int Pila::getTope(){
+	return tope;
+}
+bool Pila::Pilallena(){
+	if(getTope()==(N-1)){
+		return true;
+	}else
+	{return false;
+	}
+}
+bool Pila::Pilavacia(){
+	if(getTope()==-1){
+		return true;
+	}else
+	{return false;
+	}
+}
+void Pila::agregar(int dato){
+	if(!Pilallena()){
+		tope=getTope()+1;
+		datosPila[getTope()] = dato; 
+
+	}
+}
+void Pila::quitar(){
+	if(! Pilavacia()){
+		tope = getTope() - 1;  
+	}
+}
+
+int Pila::valortope(){
+	return datosPila[getTope()];
+}
+
+
+Pila::~Pila(void)
+{
+}
+
+//Pila main
+
+#include "stdafx.h"
+#include <iostream> 
+#include "stdlib.h"
+#include "Pila.h"
+#include "conio.h"
+
+using namespace std; 
+
+int menu(); //Método para asignar un menú de opciones.
+void mostrarPila(Pila pila); //Método para mostrar los datos de la pila.
+
+int main() {   
+	int opc;    
+	int dato;  
+	Pila pila;  
+	do{
+		opc = menu();  
+		switch(opc){           
+		case 1:          
+			system("cls");                
+			cout << "________________________________________________ \n";              
+			cout << "\n           AGREGAR DATOS A LA PILA \n";               
+			cout << "________________________________________________ \n \n";      
+			cout << "Digite el dato que quiere agregar a la Pila: ";            
+			cin >> dato;                
+			cout << "\n";              
+			if (! pila.Pilallena()){ 
+				pila.agregar(dato);       
+				mostrarPila(pila);  }
+			else{ 
+				cout << "\n";                    
+				cout << " ---> La pila esta llena, No puede agregar mas elementos";                    
+				cout << "\n";                }                
+			cout << "\n";                
+			break;            
+		case 2:                
+			system("cls");                
+			cout << "________________________________________________ \n";        
+			cout << "\n          ELIMINAR DATOS DE LA PILA \n";                
+			cout << "________________________________________________ \n \n";   
+			cout << "\n";                if (! pila.Pilavacia()){                
+				pila.quitar();                  
+				mostrarPila(pila);             
+			}
+			else
+			{cout << "\n";  
+			 cout << "---> La pila esta vacia, No pueden quitar datos";     
+			 cout << "\n";                }                cout << "\n";     
+			 break;           
+		case 3:                
+			system("cls");         
+			cout << "________________________________________________ \n";   
+			cout << "\n            MOSTRAR DATOS DE LA PILA  \n";            
+			cout << "________________________________________________ \n \n"; 
+			cout << "\n";                mostrarPila(pila);            
+			cout << "\n";
+             break; 
+
+		case 4:               
+			system("cls");             
+			cout << "________________________________________________ \n";  
+			cout << "\n  VACIAR LA PILA - BORRAR  TODOS LOS ELEMENTOS \n";  
+			cout << "________________________________________________ \n \n"; 
+			cout << "\n";             
+			pila.iniciar();               
+			mostrarPila(pila);             
+			cout << "La pila esta vacia, No pueden quitar datos";   
+			cout << "\n";             
+			break;  
+
+		case 5:               
+			break;     
+		}  
+	}while(opc != 5);
+	getch();
+}
+int menu(){ 
+	int opcion = 0;  
+	cout << "________________________________________________ \n"; 
+	cout << "\n  IMPLEMENTACION DE PILAS - OPCION DEL MENU \n";   
+	cout << "________________________________________________ \n \n";   
+	cout << "\n1. Agregar Datos a la Pila\n";   
+	cout << "2. Eliminar Datos de la Pila\n";
+	cout << "3. Mostrar Datos de la Pila\n"; 
+	cout << "4. Vaciar la Pila\n";   
+	cout << "5. Salir\n";    
+	cout << "________________________________________________ \n";   
+	do{        cout << "\nSeleccione una opcion del 1 al 5: ";    
+	cin >> opcion;   
+	}
+	while(opcion <= 0 || opcion > 5);
+	return opcion;
+}
+void mostrarPila(Pila pila){ //Objetos de la clase DeclararPila, para crear una pila temporal en donde almacenar los datos.  
+	Pila temp;   
+	while (! pila.Pilavacia()){ //Mientras la pila no este vacía se muestran sus datos. 
+		cout << "---> " << pila.valortope() << "\n";      
+		temp.agregar(pila.valortope());//Se agrega a una pila temporal el valor del tope de la pila actual.   
+		pila.quitar(); //Se elimina el tope de la pila actual, para pasar al siguiente elemento.  
+	} //Posteriormente se copia nuevamente la pila temporal hasta la pila original.   
+	while (! temp.Pilavacia()){ 
+		pila.agregar(temp.valortope()); //Se agrega a la pila original el valor del tope de la pila temporal.     
+		temp.quitar(); //Se elimina el tope de la pila temporal, para pasar al siguiente elemento. 
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,64 @@
+
+#include "stdafx.h"
+#include <stdio.h>
+#include "conio.h"
+#include <iostream>
+#define MAXROW 50
+#define MAXCOL 50
+
+using namespace std;
+
+int i,j,fil,col;
+int MatA[MAXROW][MAXCOL],MatB[MAXROW][MAXCOL],MatC[MAXROW][MAXCOL]; 
+
+int main()
+{
+    cout<<"sumar matrices:\n";
+    cout<<"Introduzca el tamano de las matrices:\n\n Filas:"; 
+	cin>>fil;
+    cout<<"Columnas:"; 
+	cin>>col;
+    
+    
+    cout<<"Introduzca los datos de la Matriz A"<<endl;
+    for(i=0;i<fil;i++)
+    {
+        for(j=0;j<col;j++)
+        {
+             cout<<"MAT ["<<i<<"] ["<<j<<"]: "<<MatA[i][j]<<"\t";  
+			 cin>>MatA[i][j];
+	         cout<<endl;
+        }
+    }
+    
+    cout<<"Introduzca los datos de la Matriz B:"<<endl;
+    for(i=0;i<fil;i++)
+    {
+        for(j=0;j<col;j++)
+        {
+            cout<<"MAT ["<<i<<"] ["<<j<<"]:"<<MatB[i][j];  
+			cin>>MatB[i][j];
+	        cout<<endl;
+        }
+    }
+    
+    for(i=0;i<fil;i++)
+    {
+        for(j=0;j<col;j++) 
+	    MatC[i][j]=MatA[i][j]+MatB[i][j]; 
+    }
+    
+    cout<<"\n\nLa matriz resultado es:\n\n";
+    for(i=0;i<fil;i++)
+    {
+        for(j=0;j<col;j++)
+	     cout<<"MAT ["<<i<<"] ["<<j<<"]: "<<MatC[i][j]<<"\t";   
+	     cout<<endl;
+        
+			
+    }
+ getch();
+
+}
+
+

@@ -1,0 +1,26 @@
+int Puntosilla(int matrix[MAXROW][MAXCOL],int n, int m){
+	int maximofilas;
+	int maximocolumnas;
+
+	for (int i=0;i<n;i++){
+		for(int j=0;j<m;j++){
+
+			if(matrix[i][j]>maximofilas[i];
+			maximofilas[i]=matrix[i][j];
+
+			if(matrix[i][j]<minimocolumnas[j];
+			minimocolumnas[j]=matrix[i][j];
+		}
+	}
+
+	for (int i=0;i<n;i++){
+		for(int j=0;j<m;j++){
+			
+			if(maximofilas[i]== minimocolumnas[j])
+
+				cout<<"punto de silla en "<<i<<","<<j<<endl;
+			
+		}
+	}
+	return 
+}
